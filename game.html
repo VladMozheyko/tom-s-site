@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&amp;display=swap" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<title>Мини-игра: Покрась забор</title>
+<style>
+
+@keyframes brushWave {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+}
+.brush:hover {
+  animation: brushWave 0.6s ease-in-out;
+  transform-origin: bottom right;
+  display: inline-block;
+}
+
+    body {
+      background-color: #f0eee1;
+      font-family: 'Indie Flower', 'Courier New', monospace;
+      text-align: center;
+      padding: 20px;
+      
+    }
+    .board {
+  cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur103.cur'), auto;
+      width: 40px;
+      height: 150px;
+      background-color: #deb887;
+      border: 2px solid #8b5a2b;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+    .painted {
+      animation: paintSwipe 0.4s forwards;
+    }
+    @keyframes paintSwipe {
+      0% { background-color: #deb887; }
+      100% {  }
+    }
+      background-color: #f0eee1;
+      font-family: 'Indie Flower', 'Courier New', monospace;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    nav {
+      margin-bottom: 20px;
+    }
+    .fence {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .board {
+  cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur103.cur'), auto;
+      width: 40px;
+      height: 150px;
+      background-color: #deb887;
+      border: 2px solid #8b5a2b;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .painted {
+      
+    }
+    #message {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: green;
+    }
+  
+
+    .brush-flash {
+      box-shadow: 0 0 10px 2px rgba(0,0,0,0.2);
+      transform: scale(1.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+.painted {
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+<h1><span class="brush" style="font-size: 1.2em; margin-left: 10px;">🖌️</span> Мини-игра: Покрась забор!</h1>
+<nav>
+<a href="index.html">Главная</a> |
+  <a href="paint.html">Покраска забора</a> |
+  <a href="membership.html">Абонементы</a> |
+  <a href="game.html">Игра</a>
+</nav>
+<p>Нажимай на доски, чтобы покрасить забор в белый цвет!</p>
+<div style="margin-top: 20px;">
+<label for="colorPicker">Выберите цвет краски:</label>
+<input id="colorPicker" type="color" value="#ffffff"/>
+<label style="margin-left: 20px;">
+<input id="versusMode" type="checkbox"/>
+    Режим против Гека 🧢
+  </label>
+</div>
+<div style="margin-top: 10px;">
+<label for="difficulty">Сложность:</label>
+<select id="difficulty">
+<option value="easy">Лёгкий</option>
+<option selected="" value="medium">Средний</option>
+<option value="hard">Сложный</option>
+</select>
+</div>
+<div class="fence" id="fence">
+<!-- 10 досок -->
+<div class="board"></div>
+<div class="board"></div>
+<div class="board"></div>
+<div class="board"></div>
+<div class="board"></div>
+<div class="board"></div>
+<div class="board"></div>
+<div class="board"></div>
+<div class="board"></div>
+<div class="board"></div>
+</div>
+<div id="message"></div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const footer = document.querySelector("footer");
+    if (footer) {
+      footer.addEventListener("click", function() {
+        alert("Ты нашёл секрет Тома! 🤫
+
+Совет от профи:
+Если притвориться, что работа весёлая — её сделают за тебя!");
+      });
+    }
+  });
+</script>
+<script src="game.js"></script><script>
+document.addEventListener("DOMContentLoaded", function () {
+  const boards = document.querySelectorAll('.board');
+  const colorPicker = document.getElementById('colorPicker');
+  const versusMode = document.getElementById('versusMode');
+  const messageBox = document.getElementById('message');
+  const difficulty = document.getElementById('difficulty');
+  let paintedCount = 0;
+  const totalBoards = boards.length;
+
+  const savedColor = localStorage.getItem('brushColor');
+  if (savedColor) colorPicker.value = savedColor;
+
+  colorPicker.addEventListener('input', () => {
+    localStorage.setItem('brushColor', colorPicker.value);
+  });
+
+  function getGekChance() {
+    switch (difficulty.value) {
+      case "easy": return 0.1;
+      case "hard": return 0.8;
+      default: return 0.4;
+    }
+  }
+
+  function flickBrush(board) {
+    board.classList.add('brush-flash');
+    setTimeout(() => board.classList.remove('brush-flash'), 200);
+  }
+
+  boards.forEach((board) => {
+    board.addEventListener('click', () => {
+      if (!board.classList.contains('painted')) {
+        board.classList.add('painted');
+        board.style.backgroundColor = colorPicker.value;
+        paintedCount++;
+        flickBrush(board);
+
+        if (versusMode.checked) {
+          setTimeout(() => {
+            if (Math.random() < getGekChance()) {
+              board.classList.remove('painted');
+              board.style.backgroundColor = '#deb887';
+              paintedCount--;
+              messageBox.textContent = 'Гек перекрасил доску! 😈';
+            }
+          }, 500 + Math.random() * 1000);
+        }
+
+        if (paintedCount === totalBoards) {
+          messageBox.textContent = 'Ты победил! Забор шикарен! 🏆';
+        }
+      }
+    });
+  });
+});
+</script></body>
+</html>

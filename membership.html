@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&amp;display=swap" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<title>Абонементы на покраску</title>
+<style>
+
+@keyframes brushWave {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+}
+.brush:hover {
+  animation: brushWave 0.6s ease-in-out;
+  transform-origin: bottom right;
+  display: inline-block;
+}
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background-color: #f0eee1;
+      font-family: 'Indie Flower', 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background-color: #c4a484;
+      padding: 20px;
+      width: 100%;
+      text-align: center;
+    }
+    nav {
+      margin: 20px 0;
+    }
+    h1 {
+      color: white;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      flex-grow: 1;
+    }
+    .card {
+      background-color: #fff;
+      border-left: 5px solid #c4a484;
+      padding: 15px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .quote {
+      background-color: #f9f9f9;
+      border-left: 5px solid #999;
+      padding: 10px;
+      font-style: italic;
+      margin-top: 30px;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #eee;
+      font-size: 0.9em;
+      color: #555;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<header>
+<h1><span class="brush" style="font-size: 1.2em; margin-left: 10px;">🖌️</span> Абонементы и Скидки</h1>
+</header>
+<nav>
+<a href="index.html">Главная</a> |
+  <a href="paint.html">Покраска забора</a> |
+  <a href="membership.html">Абонементы</a> |
+  <a href="game.html">Игра</a>
+</nav>
+<div class="container">
+<div class="card">
+<h2>🎨 Абонемент "Профи Кисть"</h2>
+<p>5 покрасок — и 6-я бесплатно!</p>
+</div>
+<div class="card">
+<h2>🍏 Абонемент "Яблочный друг"</h2>
+<p>
+        У нас особая программа для любителей яблок и технологий. <br/>
+        Принеси 1 настоящее яблоко — получи скидку 10%. <br/>
+        Принеси 1 <strong>iPhone</strong> — получи абонемент навсегда. <br/><br/>
+<em>(пока что ни один клиент не согласился — но мы верим!)</em> 🍎📱
+      </p>
+</div>
+<div class="card">
+<h2>🏅 VIP-Партнёр</h2>
+<p>Для настоящих фанатов забора: при оплате за год вперёд — персональная кисточка с автографом Тома!</p>
+</div>
+<div class="card">
+<h2>💰 Абонемент "Охотник за кладом"</h2>
+<p>С нами вы не просто красите, вы ищете сокровища! Каждому подписчику — карта с загадкой. Кто найдёт клад — тот в шоколаде (ну, или в золоте).</p>
+</div>
+<div class="card">
+<h2>🛢️ Абонемент "Бочковая тусовка"</h2>
+<p>Проводим еженедельные собрания с Геком Финном. В программе: разговоры про жизнь, планы на побег, обмен пирогами. Первая бочка — бесплатно!</p>
+</div>
+<div class="quote">
+      “We don't just bite the apple. We paint with it.” — Том Сойер, CEO of FenceTech 🍏🎨
+    </div>
+</div>
+<footer>
+    © Том Сойер и Гек Финн, 1876–∞. Все права закопаны.
+  </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const footer = document.querySelector("footer");
+    if (footer) {
+      footer.addEventListener("click", function() {
+        alert("Ты нашёл секрет Тома! 🤫
+
+Совет от профи:
+Если притвориться, что работа весёлая — её сделают за тебя!");
+      });
+    }
+  });
+</script>
+</body>
+</html>

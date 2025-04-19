@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&amp;display=swap" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<title>Дневник Тома Сойера</title>
+<style>
+
+@keyframes brushWave {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+}
+.brush:hover {
+  animation: brushWave 0.6s ease-in-out;
+  transform-origin: bottom right;
+  display: inline-block;
+}
+
+    body {
+      background-color: #fffbe6;
+      font-family: 'Indie Flower', 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background-color: #c4a484;
+      padding: 20px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      color: white;
+      font-size: 2.5em;
+    }
+    nav {
+      margin: 20px 0;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+    .note {
+      background-color: #fdf6e3;
+      border-left: 5px solid #c4a484;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #eee;
+      font-size: 0.9em;
+      color: #555;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<header>
+<h1><span class="brush" style="font-size: 1.2em; margin-left: 10px;">🖌️</span> Добро пожаловать в мой уголок, я — Том Сойер!</h1>
+</header>
+<nav>
+<a href="index.html">Главная</a> |
+  <a href="paint.html">Покраска забора</a> |
+  <a href="membership.html">Абонементы</a> |
+  <a href="game.html">Игра</a>
+</nav>
+<div class="container">
+<div class="note">
+<h2>📜 Сегодняшняя запись</h2>
+<p>Сегодня я придумал, как сделать урок литературы повеселее. Вместо того чтобы писать сочинение, я сделал сайт! И если тётя Полли спросит — скажите, что это современный подход.</p>
+</div>
+<div class="note">
+<h2>🖌️ Мои проделки</h2>
+<ul style="text-align: left;">
+<li>Покрасил забор — и уговорил Бена заплатить за это 🍎</li>
+<li>Убежал с Геком и Джо на остров пиратов 🏴‍☠️</li>
+<li>Нашёл клад — но никому не скажу где!</li>
+</ul>
+</div>
+<div class="note">
+<h2>💡 Мудрость от Тома</h2>
+<p><em>"Если хочешь, чтобы кто-то сделал твою работу — сделай вид, что она весёлая!"</em></p>
+</div>
+</div>
+<footer>
+    © Том Сойер, 1876 (ну или когда там был Wi-Fi)
+  </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const footer = document.querySelector("footer");
+    if (footer) {
+      footer.addEventListener("click", function() {
+        alert("Ты нашёл секрет Тома! 🤫
+
+Совет от профи:
+Если притвориться, что работа весёлая — её сделают за тебя!");
+      });
+    }
+  });
+</script>
+</body>
+</html>
